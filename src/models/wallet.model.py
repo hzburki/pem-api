@@ -1,7 +1,8 @@
-from ..config.database import Base
-from sqlalchemy import DateTime, Column, Float, ForeignKey, Integer, String
+from sqlalchemy import DateTime, Column, Float, Integer, String
 from sqlalchemy.orm import relationship
 from sqlalchemy import func
+
+from ..config.database import Base
 
 
 class Wallet(Base):

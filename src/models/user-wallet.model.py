@@ -1,7 +1,8 @@
-from ..config.database import Base
-from sqlalchemy import DateTime, Column, Float, ForeignKey, Integer, String
+from sqlalchemy import DateTime, Column, ForeignKey, Integer
 from sqlalchemy.orm import relationship
 from sqlalchemy import func
+
+from ..config.database import Base
 
 
 class UserWallet(Base):
@@ -15,3 +16,5 @@ class UserWallet(Base):
 
     user = relationship("User", back_populates="user_wallets")
     wallet = relationship("Wallet", back_populates="user_wallets")
+    transactions = relationship(
+        "Transaction", back_populates="user_wallet", cascade="all, delete-orphan")

@@ -11,14 +11,6 @@ Table users {
   deleted_at timestamp [default: null]  
 }
 
-Table user_sessions {
-  id uuid [primary key]
-  user_id uuid [ref: > users.id] // many to one
-  created_at timestamp [default: `now()`]
-  updated_at timestamp [default: `now()`]
-  deleted_at timestamp [default: null]
-}
-
 Table user_wallets {
   id uuid [primary key]
   user_id uuid [ref: > users.id, not null] // many to one
