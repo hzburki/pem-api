@@ -18,14 +18,6 @@ class User(Base):
     user_wallets = relationship(
         "UserWallet", back_populates="user", cascade="all, delete-orphan")
 
-    def dict(self):
-        return {
-            "id": self.id,
-            "email": self.email,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at,
-        }
-
 
 class Wallet(Base):
     __tablename__ = "wallets"
@@ -40,15 +32,6 @@ class Wallet(Base):
 
     user_wallets = relationship(
         "UserWallet", back_populates="wallet", cascade="all, delete-orphan")
-
-    def dict(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "balance": self.balance,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at,
-        }
 
 
 class UserWallet(Base):
@@ -65,12 +48,3 @@ class UserWallet(Base):
     user = relationship("User", back_populates="user_wallets")
     wallet = relationship(
         "Wallet", back_populates="user_wallets")
-
-    def dict(self):
-        return {
-            "id": self.id,
-            "user_id": self.user_id,
-            "wallet_id": self.wallet_id,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at,
-        }
