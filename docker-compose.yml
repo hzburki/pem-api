@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  database: 
+    container_name: pem-database
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_DATABASE: ${MYSQL_DATABASE} 
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    env_file:
+      - .env
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
+
+  api: 
+    container_name: pem-api
+    build: .
+    restart: always
+    environment:
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_DATABASE: ${MYSQL_DATABASE} 
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    env_file:
+      - .env
+    ports:
+    - 8000:8000
+    volumes:
+      - .:/app
+    depends_on: 
+      - database
+
+volumes:
+  pem-database:
