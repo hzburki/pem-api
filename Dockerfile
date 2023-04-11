@@ -12,7 +12,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Upgrade pip to the latest version
-RUN upgrade pip install --upgrade pip
+RUN pip install --upgrade pip
 
 # Install the requirements 
 # --no-cache-dir is used to avoid caching the packages on local machine
