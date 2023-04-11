@@ -1,0 +1,76 @@
+// Use DBML to define your database structure
+// Docs: https://www.dbml.org/docs
+
+Table users {
+  id uuid [primary key]
+  name varchar(255) [default: null]
+  email varchar(255) [unique, not null]
+  password varchar(255) [not null]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  deleted_at timestamp [default: null]  
+}
+
+Table user_sessions {
+  id uuid [primary key]
+  user_id uuid [ref: > users.id] // many to one
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  deleted_at timestamp [default: null]
+}
+
+Table user_wallets {
+  id uuid [primary key]
+  user_id uuid [ref: > users.id, not null] // many to one
+  wallet_id uuid [ref: > wallets.id, not null] // many to one
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  deleted_at timestamp [default: null]
+}
+
+Table wallets {
+  id uuid [primary key]
+  name varchar(255)
+  balance float [default: 0]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  deleted_at timestamp [default: null]
+}
+
+Table transactions {
+  id uuid [primary key]
+  user_category_id uuid [ref: - user_categories.id, not null] // one to one
+  user_wallet_id uuid [ref: > user_wallets.id, not null] // one to many
+  name varchar(255)
+  date Date
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  deleted_at timestamp [default: null]
+}
+
+Table user_categories {
+  id uuid [primary key]
+  name varchar(255)
+  user_id uuid [not null, ref: > users.id]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  deleted_at timestamp [default: null]
+}
+
+enum budget_types {
+  all
+  wallet
+  category
+}
+
+Table budgets {
+  id uuid [primary key]
+  name varchar(255)
+  user_id uuid [not null, ref: > users.id]
+  amount float [not null]
+  user_category_id uuid [default: null, ref: > user_categories.id, Note: 'NULL means the budget is applicable on all categories']
+  wallet_id uuid [default: null, ref: > wallets.id, Note: 'NULL means the budget is applicable on all wallets'] 
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  deleted_at timestamp [default: null]
+}

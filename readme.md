@@ -26,3 +26,9 @@ The database name is `pem-db` and the username is `root` and the password is `ap
 > You can specify the password and database name to whatever you want.
 
 5. Run the migrations:
+
+### Closing Work
+When you are done working on the project, you can stop the docker container by running the following command:
+```bash
+docker-compose down
+```
