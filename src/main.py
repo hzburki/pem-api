@@ -1,19 +1,14 @@
 from fastapi import FastAPI
 
-from . import models
-from .database import SessionLocal, engine
+from .config.database import engine
 
-models.Base.metadata.create_all(bind=engine)
+from .models import *
+
+user.Base.metadata.create_all(bind=engine)
+wallet.Base.metadata.create_all(bind=engine)
+user_wallet.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 @app.get("/")
