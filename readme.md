@@ -1,5 +1,8 @@
 # Personal Expense Manager API
 
+## Repository Setup
+The general steps I took and the resources I used are [here](./docs/setup.md).
+
 ## Getting Started
 These are the steps to run this project locally. It uses python, fastapi, and docker.
 
