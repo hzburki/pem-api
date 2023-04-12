@@ -20,9 +20,9 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the source code to the container
-COPY ./src ./src
+COPY . .
 
 # This command starts the Uvicorn server to serve the FastAPI app on port 8000 
 # with auto-reloading enabled. 
-CMD [ "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload" ]
+CMD [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload" ]
 
