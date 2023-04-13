@@ -1,13 +1,13 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
+
+from src.routes import transaction_route, user_route
 
 app = FastAPI()
 
+app.include_router(user_route.router)
+app.include_router(transaction_route.router)
 
-@app.get("/")
+
+@app.get("/", status_code=200)
 def root():
-    return {"message": "Hello World from Docker Container"}
-
-
-@app.get('/item/{item_id}')
-def read_item(item_id: int):
-    return {"item_id": item_id}
+    return Response()
