@@ -1,5 +1,20 @@
 # Personal Expense Manager API
 
+## What is this? 
+
+This is a personal expense manager API. I am building a clone for [moneylover](https://moneylover.me/) a personal expense tracker I use daily. I want to extend its functionalities and add some features that I want. 
+
+It is built using Python, FastAPI, and MySQL. This API will be used to power a frontend application built with React (vite). You can find it [here](https://github.com/hzburki/pem-client).
+
+## Motivation
+
+This project is a way for me to learn and practice the following:
+
+1. Python Language
+2. Computer Vision and Machine Learning Libraries (with Python)
+
+***
+
 ## Repository Setup
 The general steps I took and the resources I used are [here](./docs/setup.md).
 
