@@ -24,5 +24,5 @@ COPY . .
 
 # This command starts the Uvicorn server to serve the FastAPI app on port 8000 
 # with auto-reloading enabled. 
-CMD [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload" ]
+CMD [ "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload" ]
 
