@@ -16,4 +16,4 @@ class Wallet(Base):
                         onupdate=func.now())
 
     user_wallets = relationship(
-        "UserWallet", back_populates="wallet", cascade="all, delete-orphan")
+        "UserWallet", back_populates="wallet", cascade="all, delete")
