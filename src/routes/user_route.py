@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from pydantic import BaseModel, EmailStr
 
 router = APIRouter(
     prefix="/users",
@@ -6,6 +7,11 @@ router = APIRouter(
 )
 
 
+class RegisterUser(BaseModel):
+    email: EmailStr
+    password: str
+
+
 @router.post("/", status_code=201)
-def register_user():
+def register_user(req_body: RegisterUser):
     return {"message": "User added successfully!"}
